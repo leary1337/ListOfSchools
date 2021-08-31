@@ -1,0 +1,54 @@
+<div class="grid-x grid-padding-x">
+
+  <div class="large-12 cell">
+    <h3><a href="/school/<%= @school_id %>"><%= @school[:school_name] %></a></h3>
+  </div>
+
+  <% if @school_class %>
+    <div class="large-12 cell">
+      <h3>Список учеников <%= @school_class %> класса</h3>
+    </div>
+
+    <div class="large-12 cell">
+      <div class="small button-group">
+        <% ('А'..'Я').to_a.each do |letter| %>
+          <a href="?filter=<%= letter %>" class="button"><%= letter %></a>
+        <% end %>
+      </div>
+      <a href="<%= @class_id %>" class="button small">Все ученики</a>
+    </div>
+
+    <% if @students_by_class.empty? %>
+      <div class="large-12 cell callout">
+        <p>Список учеников пуст</p>
+      </div>
+    <% else %>
+      <div class="large-12 cell">
+        <table>
+          <thead>
+            <tr>
+              <th>ФИО</th>
+              <th>Дата рождения</th>
+              <th>Пол</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @students_by_class.each do |student|  %>
+              <tr>
+                <td><%=  student.full_name  %></td>
+                <td><%=  student.date_of_birth  %></td>
+                <td><%= student.gender %></td>
+              </tr>
+            <%  end  %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+  <% else %>
+    <div class="large-12 cell callout">
+      <p>Такого класса не существует</p>
+    </div>
+  <% end %>
+</div>

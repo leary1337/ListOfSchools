@@ -1,0 +1,37 @@
+<div class="grid-x grid-padding-x">
+  <div class="large-12 cell">
+    <h3>Список школ</h3>
+  </div>
+
+  <div class="large-12 cell">
+    <div class="button-group">
+      <a href="/schools?type=school" class="button">Школа</a>
+      <a href="/schools?type=lyceum" class="button">Лицей</a>
+      <a href="/schools?type=gymnasium" class="button">Гимназия</a>
+    </div>
+  </div>
+
+  <% unless @schools.empty? %>
+    <div class="large-12 cell">
+      <table>
+        <thead>
+        <tr>
+          <th>Название учебного заведения</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @schools.each do |id, school| %>
+          <tr>
+            <td><a href="/school/<%= id %>"><%= school %></a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="large-12 cell callout">
+      <p>Школ такого типа нет</p>
+    </div>
+  <% end %>
+</div>

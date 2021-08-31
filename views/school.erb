@@ -1,0 +1,39 @@
+<div class="grid-x grid-padding-x">
+
+  <% if @school[:school_name] %>
+    <div class="large-12 cell">
+      <h3><%= @school[:school_name] %></h3>
+      <p>Всего учеников: <%= @school[:total_count] %></p>
+      <p>Количество мальчиков: <%= @school[:count_boys] %></p>
+      <p>Количество девочек: <%= @school[:count_girls] %></p>
+      <a href="?sort=<%= @asc_or_desc == -1 ? 'asc' : 'desc' %>" class="button">↑/↓</a>
+    </div>
+
+    <div class="large-12 cell">
+      <table>
+        <thead>
+        <tr>
+          <th>Список классов</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @school[:list_classes].each do |id, class_number| %>
+          <tr>
+            <td><a href="<%= @school_id %>/class/<%= id %>"><%= class_number %></a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <% else %>
+    <div class="large-12 cell callout">
+      <p>Такой школы не существует</p>
+    </div>
+  <% end %>
+
+  <div class="large-12 cell">
+    <a href="/schools" class="button">Вернуться к списку школ</a>
+  </div>
+</div>
